@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Getting Started"
-author: "Le"
+author: "Diep"
 categories: journal
 tags: [documentation,sample]
 image: forest.jpg
