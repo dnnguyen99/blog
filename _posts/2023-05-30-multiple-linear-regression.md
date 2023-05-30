@@ -106,13 +106,6 @@ If $X^TX$ is invertible, we can solve for $\hat{\beta}$:
 We have derived a closed-form expression for $\hat{\beta}$, but how can we apply this to fit a regression model? Let's go back to our 
 example. Let's say we have data on the age, height, and weight of four people:
 
-Person              | Age               | Heigh              | Weight
---------------------- | :-------------------: | :-------------------- | --------------------:
-1                 | 20           | 170     | 60
-2 | 6 | 45 | 20
-3 | 40 | 160 | 50
-4 | 12 | 150 | 40
-
 Person | Age  | Height  | Weight
 ------ |:----:|:--------| --------:
 1      | 20   | 170     | 60
