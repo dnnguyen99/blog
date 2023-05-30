@@ -290,7 +290,7 @@ To start, we pick a random position on the hill (randomly initialize our $\beta$
 
 We take steps down the hill, and the size of each step is determined by $\lambda$, the learning rate or the step size. We want to reach the bottom as quickly as possible, but we need to keep in mind the value for $\lambda$. If $\lambda$. is too large, we might overshoot the bottom of the hill and miss the optimal solution. On the other hand, if the learning rate is too small, it will take us a very long time to reach the bottom because our steps are too tiny and we converge very slowly.
 
-![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/img/posts/gd.jpg?raw=true){:width="600px"}
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/gd.jpg?raw=true){:width="600px"}
 
 
 In summary, gradient descent is like descending a hill to find the lowest point. We start at a random position, move in the opposite direction of the gradient (which points uphill), and adjust the size of our steps using the learning rate. The aim is to find the optimal solution efficiently without overshooting or converging too slowly.
