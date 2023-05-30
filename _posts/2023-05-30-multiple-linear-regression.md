@@ -106,12 +106,12 @@ If $X^TX$ is invertible, we can solve for $\hat{\beta}$:
 We have derived a closed-form expression for $\hat{\beta}$, but how can we apply this to fit a regression model? Let's go back to our 
 example. Let's say we have data on the age, height, and weight of four people:
 
-Person | Age  | Height  | Weight
------- |:----:|:--------| --------:
-1      | 20   | 170     | 60
-2      | 6    | 45      | 20
-3      | 40   | 160     | 50
-4      | 12   | 150     | 40
+Person | Age  | Height | Weight
+------ |:----:|:------:|:-------:
+1      | 20   | 170    | 60
+2      | 6    | 45     | 20
+3      | 40   | 160    | 50
+4      | 12   | 150    | 40
 
 Now, given a fifth person with a height of $135$ cm and
 weight $40$ kg, how do we use the available data to predict this new person's age? We can use the closed form equation $\hat{\beta}= (X^TX)^{-1}X^T y$ to find the coefficient estimates. First, let's put our data into matrix form:
@@ -218,12 +218,12 @@ We looked at how the normal equation can be used to solve for the coefficient es
  
 Let's use the same example above. Recall our dataset
 
-Person     | Age        | Height     | Weight
----------- | :---------:| :----------| ----------:
-1          | 20         | 170        | 60
-2          | 6          | 45         | 20
-3          | 40         | 160        | 50
-4          | 12         | 150        | 40
+Person | Age  | Height | Weight
+------ |:----:|:------:|:-------:
+1      | 20   | 170    | 60
+2      | 6    | 45     | 20
+3      | 40   | 160    | 50
+4      | 12   | 150    | 40
 
 We want to predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using this data and gradient descent.
 
