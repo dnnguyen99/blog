@@ -85,6 +85,14 @@ Let us first compute the derivative of the loss function:
 
 Recall from linear algebra that $\lVert x \rVert_2^2 = x^T x$ and $(AB)^T = B^TA^T$. Then,
 
+$$\begin{align}
+\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  &= \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)\\
+&= \frac{\partial}{\partial \beta} (y^T - \beta^T X^T) (y - X \beta)\\
+&= \frac{\partial}{\partial \beta} y^Ty  -y^TX \beta - \beta^T X^Ty + \beta^T X^T X \beta\\
+&=\frac{\partial}{\partial \beta} y^Ty - 2 \beta^T X^T y + \beta^T X^T X \beta\\
+&= -2X^Ty + 2X^T X \beta
+\end{align$$
+
   $$\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  = \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)$$ 
   
   $$ = \frac{\partial}{\partial \beta} (y^T - \beta^T X^T) (y - X \beta)$$
@@ -112,7 +120,7 @@ We have derived a closed-form expression for $\hat{\beta}$, but how can we apply
 example. Let's say we have data on the age, height, and weight of four people:
 
 Person | Age  | Height | Weight
------- |:----:|:------:|:-------:
+:-----:|:----:|:------:|:-------:
 1      | 20   | 170    | 60
 2      | 6    | 45     | 20
 3      | 40   | 160    | 50
@@ -147,14 +155,12 @@ weight $40$ kg, how do we use the available data to predict this new person's ag
 
 Before we proceed, we should normalize the design matrix. A person's height is measured in cm and a person's weight is measured in kg. The two variables have different magnitudes (e.g., height ranging from 45 cm to 170 cm and weight ranging from 20 kg to 60 kg). Normalization ensures that the variables are on a similar scale, preventing one variable from dominating the regression model's results simply due to its larger magnitude. The new, normalized design matrix $X$ is
 
-{% raw %}
   $$X = \begin{bmatrix}
   1 & 0.7704 & 1.1832\\
   1 & -1.7148 & -1.5213\\
   1 & 0.5716 & 0.5071\\
   1 & 0.3728 & -0.1690\\
   \end{bmatrix}$$
- {% endraw %}
 
 We will also need to normalize the new person's height and weight using the mean and sd height and weight from the dataset. For the fifth person, their normalized height is $0.0746$ and their normalized weight is $-0.1690$.
 
@@ -224,7 +230,7 @@ We looked at how the normal equation can be used to solve for the coefficient es
 Let's use the same example above. Recall our dataset
 
 Person | Age  | Height | Weight
------- |:----:|:------:|:-------:
+:-----:|:----:|:------:|:-------:
 1      | 20   | 170    | 60
 2      | 6    | 45     | 20
 3      | 40   | 160    | 50
@@ -283,9 +289,11 @@ $$\beta^{(1)} = \begin{bmatrix} 1.56\\
 \end{bmatrix} $$
 
 ### GD Step 4: Repeat until convergence
-We repeat steps 2 and 3 to update our estimates until $\beta^{(i+1)} = \beta^{(i)}$. Note that we need to use the current $\beta^{(i)}$ to compute the gradient for each iteration. After 1000 iterations, we get the estimates $\beta = \begin{bmatrix} 19.5\\
+We repeat steps 2 and 3 to update our estimates until $\beta^{(i+1)} = \beta^{(i)}$. Note that we need to use the current $\beta^{(i)}$ to compute the gradient for each iteration. After 1000 iterations, we get the estimates 
+$$\beta = \begin{bmatrix} 19.5 \\
 3.5544\\
-4.8679\end{bmatrix}$.
+4.8679
+\end{bmatrix}$$.
 
 ## Understanding Gradient Descent
 
