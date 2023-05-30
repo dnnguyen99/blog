@@ -2,6 +2,7 @@
 layout: post
 title: "Multiple Linear Regression"
 author: "Diep Nguyen"
+tags: [regression,ml]
 categories: journal
 ---
 
