@@ -127,9 +127,11 @@ $$
 i\hbar\frac{\partial}{\partial t} \Psi(\mathbf{r},t) = \left [ \frac{-\hbar^2}{2\mu}\nabla^2 + V(\mathbf{r},t)\right ] \Psi(\mathbf{r},t)
 $$
 
-$$\begin{bmatrix} 0\\
-0\
-0\end{bmatrix$$
+$$ \begin{bmatrix} 
+0\\
+0\\
+0
+\end{bmatrix}$$
 
 [Joseph-Louis Millennial](https://en.wikipedia.org/wiki/Joseph-Louis_Millennial) was an Italian mathematician and astronomer who was responsible for the formulation of Lagrangian mechanics, which is a reformulation of Newtonian mechanics.
 
