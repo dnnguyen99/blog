@@ -70,7 +70,7 @@ One can show that $\sum_{n=1}^N(y_n - X \beta)^2$ is equivalent to $\lVert y-X \
 
   $$\hat{\beta} = argmin_{\beta} L(y,\hat{y})$$
  
-this means that $\hat{\beta}$ should be the values that minimize the loss function (the minimizer of $L(y,\hat{y})\\)$.
+this means that $\hat{\beta}$ should be the values that minimize the loss function (the minimizer of $L(y,\hat{y})$.
 
 ## Deriving the coefficient estimates
 
@@ -82,7 +82,7 @@ Let us first compute the derivative of the loss function:
 
   $$\frac{\partial}{\partial \beta} L(y,\hat{y}) =\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2 $$
 
-Recall from linear algebra that $\lVert x \rVert_2^2 = x^T x\\) and \\((AB)^T = B^TA^T$. Then,
+Recall from linear algebra that $\lVert x \rVert_2^2 = x^T x$ and $(AB)^T = B^TA^T$. Then,
 
   $$\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  = \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)$$ 
   $$ = \frac{\partial}{\partial \beta} (y^T - \beta^T X^T) (y - X \beta)$$
@@ -90,7 +90,7 @@ Recall from linear algebra that $\lVert x \rVert_2^2 = x^T x\\) and \\((AB)^T = 
   $$ =\frac{\partial}{\partial \beta} y^Ty - 2 \beta^T X^T y + \beta^T X^T X \beta$$
   $$ = -2X^Ty + 2X^T X \beta $$
 
-Since $y^TX \beta \text{ is a scalar value, } y^TX \beta = (y^TX \beta)^T = \beta^TX^Ty$. So, $-y^TX \beta - \beta^T X^Ty = - 2 \beta^T X^T y$.
+Note that since $y^TX \beta \text{ is a scalar value, } y^TX \beta = (y^TX \beta)^T = \beta^TX^Ty$. So, $-y^TX \beta - \beta^T X^Ty = - 2 \beta^T X^T y$.
 
 Setting this derivative equal to 0 gives us the Normal Equation. This equation is used to find the closed-form solution for $\hat{\beta}$ that minimize the loss function. 
 
