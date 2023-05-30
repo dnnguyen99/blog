@@ -4,7 +4,7 @@ title: "Multiple Linear Regression"
 author: "Diep Nguyen"
 tags: [regression,ml]
 categories: journal
-image: lr-bg.jpg
+image: lr_bg.jpg
 ---
 
 ## What is Multiple Linear Regression?
@@ -16,7 +16,8 @@ and the response:
 
   $$age = \beta_0 + \beta_1 (Height) + \beta_2 (Weight)$$
   
-In general, if there are $p$ predictors
+In general, if there are $p$ predictors:
+
   $$y = \beta_0 + \beta_1X^{(1)} + \beta_2X^{(2)} + \cdots + \beta_pX^{(p)}, \text{ where }  \beta_0 \text{ is the intercept term. }$$
  
 The phrase "fitting a linear model" means we want to find coefficients $\beta$ such that the model $y = \beta_0 + \beta_1X^{(1)} +  \beta_2X^{(2)} +\cdots + \beta_pX^{(p)}$ accurately represents the relationship between the predictors and the response. 
@@ -27,7 +28,7 @@ In many cases, the dataset we work with contains multiple observations, such as 
 first column to account for the intercept term $\beta_0$, and the predictor variables in its remaining columns. Each row of this matrix represents one observation. In our example, the design matrix contains $1$'s 
 in its first column and the height and weight of person 1 up to person N in its second and third columns,
 respectively. Lastly, we will have a vector containing the coefficients called $\beta \in \mathbb{R}^{(p+1) \times 1}$. The dimension of this vector depends on the number of predictors. 
-Since our example has two predictors (height and weight), we will have  $\beta = [ \beta_0  \beta_1  \beta_2]^T$, where $\beta_0$ is the intercept term. 
+Since our example has two predictors (height and weight), we will have  $\beta = [ \beta_0 \quad \beta_1 \quad \beta_2]^T$, where $\beta_0$ is the intercept term. 
 
   $$y = \begin{bmatrix}
   y_0\\
