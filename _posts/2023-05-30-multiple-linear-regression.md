@@ -91,7 +91,7 @@ $$\begin{align}
 &= \frac{\partial}{\partial \beta} y^Ty  -y^TX \beta - \beta^T X^Ty + \beta^T X^T X \beta\\
 &=\frac{\partial}{\partial \beta} y^Ty - 2 \beta^T X^T y + \beta^T X^T X \beta\\
 &= -2X^Ty + 2X^T X \beta
-\end{align$$
+\end{align}$$
 
   $$\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  = \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)$$ 
   
