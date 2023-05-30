@@ -279,7 +279,7 @@ $$\beta^{(1)} = \begin{bmatrix} 1.56\\
 0.6492\\
 0.6558
 \end{bmatrix} $$
-
+ 
 ### GD Step 4: Repeat until convergence
 We repeat steps 2 and 3 to update our estimates until $\beta^{(i+1)} = \beta^{(i)}$. Note that we need to use the current $\beta^{(i)}$ to compute the gradient for each iteration. After 1000 iterations, we get the estimates 
 $$\beta = \begin{bmatrix} 19.5 \\
