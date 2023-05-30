@@ -155,7 +155,7 @@ We will also need to normalize the new person's height and weight using the mean
 
 Now, we can use the equation $\hat{\beta} = (X^TX)^{-1}X^T y$ to find the coefficients of the regression model. First, we need to find the inverse of $X^TX$. Recall from our derivation above that $X^TX$ has to be non-singular (i.e., $X^TX$ has an inverse).  
 
-$$(\\(X^TX)^{-1}\\) = 
+$$(X^TX)^{-1}\\) = 
   \begin{bmatrix} 
   2.5e-01 & -1.1485e-17 & 1.5963e-17\\
   -1.1485e-17 & 2.0424 & -1.9133\\
@@ -205,9 +205,9 @@ To solve these problems, we might want to consider using a regularized linear re
 <!-- PCA transforms the original predictor variables into uncorrelated variables known as principal components. These components capture the maximum variance in the data and are obtained by linearly combining the original variables. By selecting the principal components that explain the most variance, we can effectively reduce the dimensionality of the data while preserving crucial information. -->
 
 ## Optimization and Linear Regression
-We looked at how the normal equation can be used to solve for the coefficient estimates above. Now, we will discuss a different method that uses an optimization technique called Gradient Descent (GD). GD is an iterative method that starts with a random initiation of the \\(\beta)\\ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
+We looked at how the normal equation can be used to solve for the coefficient estimates above. Now, we will discuss a different method that uses an optimization technique called Gradient Descent (GD). GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
 
-1. $beta^{(i)}$: the current $\beta$ estimate
+1. $\beta^{(i)}$: the current $\beta$ estimate
 2. $\beta^{(i+1)}$: the new estimate obtained from $\beta$ after one iteration of GD
 3. $\lambda$: the learning rate or step size
 4. $\nabla L(y,\hat{y})$ : the gradient of the loss function. This is a vector of derivatives of the loss function w.r.t. $\beta$.
