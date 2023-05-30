@@ -4,6 +4,7 @@ title: "Multiple Linear Regression"
 author: "Diep Nguyen"
 tags: [regression,ml]
 categories: journal
+image: lr-bg.jpg
 ---
 
 ## What is Multiple Linear Regression?
@@ -93,24 +94,13 @@ $$\begin{align}
 &= -2X^Ty + 2X^T X \beta
 \end{align}$$
 
-  $$\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  = \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)$$ 
-  
-  $$ = \frac{\partial}{\partial \beta} (y^T - \beta^T X^T) (y - X \beta)$$
-  
-  $$ = \frac{\partial}{\partial \beta} y^Ty  -y^TX \beta - \beta^T X^Ty + \beta^T X^T X \beta$$
-  
-  $$ =\frac{\partial}{\partial \beta} y^Ty - 2 \beta^T X^T y + \beta^T X^T X \beta$$
-  
-  $$ = -2X^Ty + 2X^T X \beta $$
-
 Note that since $y^TX \beta \text{ is a scalar value, } y^TX \beta = (y^TX \beta)^T = \beta^TX^Ty$. So, $-y^TX \beta - \beta^T X^Ty = - 2 \beta^T X^T y$.
 
 Setting this derivative equal to 0 gives us the Normal Equation. This equation is used to find the closed-form solution for $\hat{\beta}$ that minimize the loss function. 
 
-  $$-2X^Ty + 2X^TX = 0$$
-  $$2X^TX = 2X^Ty$$
+  $$-2X^Ty + 2X^TX = 0$$\\
+  $$2X^TX = 2X^Ty$$\\
   $$X^TX \beta = X^T y$$
-
  
 If $X^TX$ is invertible, we can solve for $\hat{\beta}$:
   $$\hat{\beta} = (X^TX)^{-1}X^T y$$
@@ -194,10 +184,10 @@ Then,
   4.8721
   \end{bmatrix}$$
   
-Lastly, given the fifth person's height $(0.0746)$ and weight $(-0.1690)$, we can predict their age using the estimates we just calculated:
+Given the fifth person's height $(0.0746)$ and weight $(-0.1690)$, we can predict their age using the estimates we just calculated:
 
-  $$\hat{y} = \hat{\beta_0} + 0.0746 \hat{\beta_1} + (-0.1690) \hat{\beta_2} $$
-  $$\hat{y} =  19.5 + 0.0746 * 3.5503  -0.1690 * 4.8721 $$
+  $$\hat{y} = \hat{\beta_0} + 0.0746 \hat{\beta_1} + (-0.1690) \hat{\beta_2} $$\\
+  $$\hat{y} =  19.5 + 0.0746 * 3.5503  -0.1690 * 4.8721 $$\\
   $$\hat{y} = 22.811 = 23$$
 
 Given the dataset containing the age, height, and weight of four observations, we fit a linear regression model and used the coefficients to predict the age of a new person using (unseen) data on their height and weight. 
@@ -227,7 +217,8 @@ We looked at how the normal equation can be used to solve for the coefficient es
  
   $$\beta^{(i+1)} = \beta^{(i)} - \lambda \nabla L(y, \hat{y}) $$
  
-Let's use the same example above. Recall our dataset
+## Numerical Example  
+Let's use the same dataset from above:
 
 Person | Age  | Height | Weight
 :-----:|:----:|:------:|:-------:
@@ -236,7 +227,7 @@ Person | Age  | Height | Weight
 3      | 40   | 160    | 50
 4      | 12   | 150    | 40
 
-We want to predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using this data and gradient descent.
+We want to predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using this dataset and gradient descent.
 
 ### GD Step 1: Initialize the estimates
 First, let us start with a random initiation of $\beta$. This can be anything, but let's initialize it to be a vector of zeros, $\beta^{(0)} = [ 0 \quad 0 \quad 0]^T$.
