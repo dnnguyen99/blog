@@ -85,9 +85,13 @@ Let us first compute the derivative of the loss function:
 Recall from linear algebra that $\lVert x \rVert_2^2 = x^T x$ and $(AB)^T = B^TA^T$. Then,
 
   $$\frac{\partial}{\partial \beta} \lVert y-X \beta \rVert_2^2  = \frac{\partial}{\partial \beta} (y-X \beta)^T(y-X \beta)$$ 
+  
   $$ = \frac{\partial}{\partial \beta} (y^T - \beta^T X^T) (y - X \beta)$$
+  
   $$ = \frac{\partial}{\partial \beta} y^Ty  -y^TX \beta - \beta^T X^Ty + \beta^T X^T X \beta$$
+  
   $$ =\frac{\partial}{\partial \beta} y^Ty - 2 \beta^T X^T y + \beta^T X^T X \beta$$
+  
   $$ = -2X^Ty + 2X^T X \beta $$
 
 Note that since $y^TX \beta \text{ is a scalar value, } y^TX \beta = (y^TX \beta)^T = \beta^TX^Ty$. So, $-y^TX \beta - \beta^T X^Ty = - 2 \beta^T X^T y$.
