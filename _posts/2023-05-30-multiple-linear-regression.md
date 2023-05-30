@@ -155,7 +155,7 @@ We will also need to normalize the new person's height and weight using the mean
 
 Now, we can use the equation $\hat{\beta} = (X^TX)^{-1}X^T y$ to find the coefficients of the regression model. First, we need to find the inverse of $X^TX$. Recall from our derivation above that $X^TX$ has to be non-singular (i.e., $X^TX$ has an inverse).  
 
-$$(X^TX)^{-1}\\) = 
+$$(X^TX)^{-1} = 
   \begin{bmatrix} 
   2.5e-01 & -1.1485e-17 & 1.5963e-17\\
   -1.1485e-17 & 2.0424 & -1.9133\\
