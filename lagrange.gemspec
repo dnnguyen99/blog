@@ -3,7 +3,7 @@
 Gem::Specification.new do |spec|
   spec.name          = "lagrange"
   spec.version       = "4.0.0"
-  spec.authors       = ["Paul Le"]
+  spec.authors       = ["Le"]
   spec.email         = ["hello@paulle.ca"]
 
   spec.summary       = "A minimalist Jekyll theme for running a personal blog"
