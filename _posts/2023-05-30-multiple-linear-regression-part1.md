@@ -2,12 +2,11 @@
 layout: post
 title: "Multiple Linear Regression (Part 1)"
 author: "Diep Nguyen"
-tags: [regression,ml]
+tags: [linear regression, ml]
 categories: journal
 image: lr_bg.jpg
 ---
-
-In this article, we define multiple linear regression and represent it in matrix form. Further, we look at the Ordinary Least Squares method and go over the math behind obtaining the normal equation and deriving the closed-form solution for the coefficient estimates. We look at a small example that uses this closed-form solution to make predictions. 
+> This article explores multiple linear regression, its matrix representation, and the Ordinary Least Squares method. We delve into the math behind obtaining the normal equation and deriving the closed-form solution for coefficient estimates. Furthermore, we look at a small example that demonstrates the use of this closed-form solution for making predictions.
 
 ## What is Multiple Linear Regression?
 Linear regression is a statistical learning technique used to model the relationship between a quantitative response variable and one or more predictors. The goal is to find a linear model that captures the relationship between the independent (predictor) variables and the dependent (response) variable. This model can then be used to predict new, unseen data. When there are multiple predictors involved, we use the term "multiple linear regression" to denote the extension of simple linear regression to accommodate more than one predictor variable. 
