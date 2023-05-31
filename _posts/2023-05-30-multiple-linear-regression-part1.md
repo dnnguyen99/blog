@@ -11,25 +11,33 @@ image: lr_bg.jpg
 ## What is Multiple Linear Regression?
 Linear regression is a statistical learning technique used to model the relationship between a quantitative response variable and one or more predictors. The goal is to find a linear model that captures the relationship between the independent (predictor) variables and the dependent (response) variable. This model can then be used to predict new, unseen data. When there are multiple predictors involved, we use the term "multiple linear regression" to denote the extension of simple linear regression to accommodate more than one predictor variable. 
 
-For example, there might be a linear relationship between a person's age and their height and weight. We can fit a linear regression model using the available age, height, and weight data to capture this relationship. Then, the response (denoted as $y$ will be the age we try to predict. 
-There are two predictors: height (denoted as $X^{(1)}$) and weight (denoted as $X^{(2)}$). Linear regression uses a linear equation with coefficients $\beta$ to capture the relationship between the predictors 
+For example, there might be a linear relationship between a person's age and their height and IQ. We can fit a linear regression model using the available age, height, and weight data to capture this relationship. Then, the response (denoted as $y$) will be the age we try to predict. There are two predictors: height (denoted as $X^{(1)}$) and IQ (denoted as $X^{(2)}$). Linear regression uses a linear equation with coefficients $\beta$ to capture the relationship between the predictors 
 and the response:
 
-  $$age = \beta_0 + \beta_1 (Height) + \beta_2 (Weight)$$
+  $$age = \beta_0 + \beta_1 (Height) + \beta_2 (IQ) + \epsilon$$
   
 In general, if there are $p$ predictors:
 
-  $$y = \beta_0 + \beta_1X^{(1)} + \beta_2X^{(2)} + \cdots + \beta_pX^{(p)}, \text{ where }  \beta_0 \text{ is the intercept term. }$$
+  $$y = \beta_0 + \beta_1X^{(1)} + \beta_2X^{(2)} + \cdots + \beta_pX^{(p)} + \epsilon, \text{ where }  \beta_0 \text{ is the intercept term. }$$
  
-The phrase "fitting a linear model" means we want to find coefficients $\beta$ such that the model $y = \beta_0 + \beta_1X^{(1)} +  \beta_2X^{(2)} +\cdots + \beta_pX^{(p)}$ accurately represents the relationship between the predictors and the response. 
+The phrase "fitting a linear model" means we want to find coefficients $\beta$ such that the model $y = \beta_0 + \beta_1X^{(1)} +  \beta_2X^{(2)} +\cdots + \beta_pX^{(p)}$ accurately represents the relationship between the predictors and the response. Note that we added an error term $\epsilon$ to indicate the unexplained variations or errors present in the data. 
 
 ## Linear Regression in Matrix Form
 
-In many cases, the dataset we work with contains multiple observations, such as data on N individuals including their age, height, and weight. Writing out the linear regression model for each individual can become cumbersome and notation-heavy. Therefore, it is customary to represent the data in matrix form. We let $y$ be an $N \times 1$ vector that contains all the ages of person $1$ upto person $N$. Usually, we say $y \in \mathbb{R}^{(N \times 1)}$. We will create a matrix $X \in \mathbb{R}^{N \times (p+1)} $, where $p$ is the number of predictor variables. Usually, this matrix is called the design matrix that contains $1$'s in its
+In many cases, the dataset we work with contains multiple observations, such as data on N individuals including their age, height, and IQ. Writing out the linear regression model for each individual can become cumbersome and notation-heavy. For example, if we have data on $100$ observations, then our regression model is:
+$$\begin{alignt}
+y_1 &= \beta_0 + \beta_1X_1^{(1)} + \beta_2X_1^{(2)} + \cdots + \beta_pX_1^{(p)} + \epsilon_1\\
+y_2 &= \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)} + \epsilon_2\\
+&\cdots\\
+y_100 &= \beta_0 + \beta_1X_100^{(1)} + \beta_2X_100^{(2)} + \cdots + \beta_pX_100^{(p)} + \epsilon_100
+\end{align}$$
+Writing out all $100$ equations is a very inefficient way to express our model. Therefore, it is customary to formulate the linear regression model in matrix form. 
+
+We let $y$ be an $N \times 1$ vector that contains all the ages of person $1$ upto person $N$. Usually, we say $y \in \mathbb{R}^{(N \times 1)}$. We will create a matrix $X \in \mathbb{R}^{N \times (p+1)} $, where $p$ is the number of predictor variables. Usually, this matrix is called the design matrix that contains $1$'s in its
 first column to account for the intercept term $\beta_0$, and the predictor variables in its remaining columns. Each row of this matrix represents one observation. In our example, the design matrix contains $1$'s 
-in its first column and the height and weight of person 1 up to person N in its second and third columns,
-respectively. Lastly, we will have a vector containing the coefficients called $\beta \in \mathbb{R}^{(p+1) \times 1}$. The dimension of this vector depends on the number of predictors. 
-Since our example has two predictors (height and weight), we will have  $\beta = [ \beta_0 \quad \beta_1 \quad \beta_2]^T$, where $\beta_0$ is the intercept term. 
+in its first column and the height and IQ of person 1 up to person N in its second and third columns,
+respectively. We will have a vector containing the coefficients called $\beta \in \mathbb{R}^{(p+1) \times 1}$. The dimension of this vector depends on the number of predictors. 
+Since our example has two predictors (height and IQ), we will have  $\beta = [ \beta_0 \quad \beta_1 \quad \beta_2]^T$, where $\beta_0$ is the intercept term. Lastly, we have a vector $\epsilon \in \mathbb{R}^{N \times 1}$ that represents the associated variations in the data.
 
   $$y = \begin{bmatrix}
   y_0\\
@@ -51,15 +59,15 @@ Since our example has two predictors (height and weight), we will have  $\beta =
   \cdot \\
   \beta_p \end{bmatrix}$$
  
-The regression model aims to find coefficients $\beta$ that, when multiplied by the design matrix X, give a good estimate for $y$. 
+The regression model aims to find coefficients $\beta$ that, when multiplied by the design matrix X, give a good estimate for $y$. Thus, the "fitted" or "predicted" value is called $\hat{y}$
 
   $$\hat{y} =\beta_0 + \sum_{j=1}^{p} X^{(j)} \beta_j = X \beta $$
  
-Note that we use $\hat{y}$ instead of $y$ because there are almost always some unexplained variations or errors present in the data. So, we will not have a perfect linear relationship between the predictors and the response variable. Thus, $\hat{y}$ is an estimate of the true $y$.
+Note that $\hat{y}$ is an estimate of the true $y$ and we almost always expect that the predicted and the actual value are different. 
 
 ## The Loss Function
 
-To reiterate, we do not expect the predictors and the response to have a perfect linear relationship. So, $\hat{y}$ will not be the same as $y$. However, we can still fit a model that gives $\hat{y}$ as close to $y$ as possible. Intuitively, the perfect model will give $\beta_0, \beta_1, \cdots, \beta_p$ estimates such that, when using these estimates to calculate $\hat{y}$, the overall distance/difference between $\hat{y}$ and $y$ is minimized.
+To reiterate, we do not expect the predictors and the response to have a perfect linear relationship. So, $\hat{y}$ will not be the same as $y$. Our goal is to fit a model that gives $\hat{y}$ as close to $y$ as possible. Intuitively, the perfect model will give $\beta_0, \beta_1, \cdots, \beta_p$ estimates such that, when using these estimates to calculate $\hat{y}$, the overall distance/difference between $\hat{y}$ and $y$ is minimized.
 
 We use the Ordinary Least Squares (OLS) method to estimate the coefficients of the regression model. OLS aims to find the best-fit line that minimizes the overall difference between the predicted values and the actual values (also known that the residual sum of squares or RSS). We define the loss function $L(y,\hat{y})$ that measures the overall difference between the actual $y$ and the predicted $\hat{y}$. For a particular observation $n$, the loss function is:
 
@@ -110,17 +118,17 @@ If $X^TX$ is invertible, we can solve for $\hat{\beta}$:
 
 ## Interpretation
 We have derived a closed-form expression for $\hat{\beta}$, but how can we apply this to fit a regression model? Let's go back to our 
-example. Let's say we have data on the age, height, and weight of four people:
+example. Let's say we have data on the age, height, and IQ of four people:
 
-Person | Age  | Height | Weight
+Person | Age  | Height | IQ
 :-----:|:----:|:------:|:-------:
-1      | 20   | 170    | 60
+1      | 20   | 170    | 99
 2      | 6    | 45     | 20
-3      | 40   | 160    | 50
-4      | 12   | 150    | 40
+3      | 40   | 160    | 101
+4      | 12   | 150    | 45
 
 Now, given a fifth person with a height of $135$ cm and
-weight $40$ kg, how do we use the available data to predict this new person's age? We can use the closed form equation $\hat{\beta}= (X^TX)^{-1}X^T y$ to find the coefficient estimates. First, let's put our data into matrix form:
+IQ $30$, how do we use the available data to predict this new person's age? We can use the closed form equation $\hat{\beta}= (X^TX)^{-1}X^T y$ to find the coefficient estimates. First, let's put our data into matrix form:
 
   $$y = \begin{bmatrix}
   y_1\\
@@ -138,24 +146,24 @@ weight $40$ kg, how do we use the available data to predict this new person's ag
   1 & X_3^{(1)} & X_3^{(2)} \\
   1 & X_4^{(1)} & X_4^{(2)}\\
   \end{bmatrix} = \begin{bmatrix}
-  1 & 170 & 60\\
+  1 & 170 & 99\\
   1 & 45 & 20\\
-  1 & 160 & 50\\
-  1 & 150 & 40\\
+  1 & 160 & 101\\
+  1 & 150 & 45\\
   \end{bmatrix} , \beta = \begin{bmatrix} \beta_0 \\
   \beta_1 \\
   \beta_2 \end{bmatrix}$$
 
-Before we proceed, we should normalize the design matrix. A person's height is measured in cm and a person's weight is measured in kg. The two variables have different magnitudes (e.g., height ranging from 45 cm to 170 cm and weight ranging from 20 kg to 60 kg). Normalization ensures that the variables are on a similar scale, preventing one variable from dominating the regression model's results simply due to its larger magnitude. The new, normalized design matrix $X$ is
+Before we proceed, we should normalize the design matrix. A person's height is measured in cm and a person's IQ is a score. The two variables have different magnitudes (e.g., height ranging from 45 cm to 170 cm and IQ ranging from 20 to 101). Normalization ensures that the variables are on a similar scale, preventing one variable from dominating the regression model's results simply due to its larger magnitude. The new, normalized design matrix $X$ is
 
   $$X = \begin{bmatrix}
-  1 & 0.7704 & 1.1832\\
-  1 & -1.7148 & -1.5213\\
-  1 & 0.5716 & 0.5071\\
-  1 & 0.3728 & -0.1690\\
+  1 & 0.7704 & 0.9385\\
+  1 & -1.7148 & -1.3254\\
+  1 & 0.5716 & 0.9958\\
+  1 & 0.3728 & -0.6089\\
   \end{bmatrix}$$
 
-We will also need to normalize the new person's height and weight using the mean and standard deviation of the height and weight from our dataset. For the fifth person, their normalized height is $0.0746$ and their normalized weight is $-0.1690$.
+We will also need to normalize the new person's height and IQ using the mean and standard deviation of the height and IQ from our dataset. For the fifth person, their normalized height is $0.0746$ and their normalized IQ is $-1.0388$.
 
 Now, we can use the equation $\hat{\beta} = (X^TX)^{-1}X^T y$ to find the coefficients of the regression model. First, we need to find the inverse of $X^TX$. Recall from our derivation above that $X^TX$ has to be non-singular (i.e., $X^TX$ has an inverse).  
 
