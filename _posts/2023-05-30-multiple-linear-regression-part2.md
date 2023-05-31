@@ -1,9 +1,12 @@
 ---
 layout: post
-title: "Multiple Linear Regression (Part 1)"
+title: "Multiple Linear Regression (Part 2)"
 author: "Diep Nguyen"
-tags: [linear regression, ml]
+tags: [linear regression, code, ml]
 categories: journal
-image: lr_bg.jpg
+image: lr2_bg.jpg
 ---
-> This article explores multiple linear regression, its matrix representation, and the Ordinary Least Squares method. We delve into the math behind obtaining the normal equation and deriving the closed-form solution for coefficient estimates. Furthermore, we look at a small example that demonstrates the use of this closed-form solution for making predictions.
+> In this article, we will explore the common metrics that help us assess the performance of our linear regression model. We will also look at an implementation of linear regression using the `scikit-learn` library in Python. Additionally, we will discuss the assumptions underlying linear regression and discuss when linear regression is useful in real-world scenarios.
+
+## Mean Squared Error (MSE)
+
