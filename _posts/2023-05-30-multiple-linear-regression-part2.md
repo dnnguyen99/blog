@@ -2,7 +2,7 @@
 layout: post
 title: "Multiple Linear Regression (Part 2)"
 author: "Diep Nguyen"
-tags: [linear regression, code, ml]
+tags: [linear regression, code]
 categories: journal
 image: lr2_bg.jpg
 ---
