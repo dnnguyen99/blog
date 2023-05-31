@@ -29,7 +29,7 @@ $$\begin{align}
 y_1 &= \beta_0 + \beta_1X_1^{(1)} + \beta_2X_1^{(2)} + \cdots + \beta_pX_1^{(p)} + \epsilon_1\\
 y_2 &= \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)} + \epsilon_2\\
 &\cdots\\
-y_100 &= \beta_0 + \beta_1X_100^{(1)} + \beta_2X_100^{(2)} + \cdots + \beta_pX_100^{(p)} + \epsilon_100
+y_{100} &= \beta_0 + \beta_1X_{100}^{(1)} + \beta_2X_{100}^{(2)} + \cdots + \beta_pX_{100}^{(p)} + \epsilon_{100}
 \end{align}$$
 
 Writing out all $100$ equations is a very inefficient way to express our model. Therefore, it is customary to formulate the linear regression model in matrix form. 
