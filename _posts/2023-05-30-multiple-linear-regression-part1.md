@@ -11,7 +11,7 @@ image: lr_bg.jpg
 ## What is Multiple Linear Regression?
 Linear regression is a statistical learning technique used to model the relationship between a quantitative response variable and one or more predictors. The goal is to find a linear model that captures the relationship between the independent (predictor) variables and the dependent (response) variable. This model can then be used to predict new, unseen data. When there are multiple predictors involved, we use the term "multiple linear regression" to denote the extension of simple linear regression to accommodate more than one predictor variable. 
 
-For example, there might be a linear relationship between a person's age and their height and IQ. We can fit a linear regression model using the available age, height, and weight data to capture this relationship. Then, the response (denoted as $y$) will be the age we try to predict. There are two predictors: height (denoted as $X^{(1)}$) and IQ (denoted as $X^{(2)}$). Linear regression uses a linear equation with coefficients $\beta$ to capture the relationship between the predictors 
+For example, there might be a linear relationship between a person's age and their height and IQ. We can fit a linear regression model using the available age, height, and IQ data to capture this relationship. Then, the response (denoted as $y$) will be the age we try to predict. There are two predictors: height (denoted as $X^{(1)}$) and IQ (denoted as $X^{(2)}$). Linear regression uses a linear equation with coefficients $\beta$ to capture the relationship between the predictors 
 and the response:
 
   $$age = \beta_0 + \beta_1 (Height) + \beta_2 (IQ) + \epsilon$$
@@ -20,7 +20,7 @@ In general, if there are $p$ predictors:
 
   $$y = \beta_0 + \beta_1X^{(1)} + \beta_2X^{(2)} + \cdots + \beta_pX^{(p)} + \epsilon, \text{ where }  \beta_0 \text{ is the intercept term. }$$
  
-The phrase "fitting a linear model" means we want to find coefficients $\beta$ such that the model $y = \beta_0 + \beta_1X^{(1)} +  \beta_2X^{(2)} +\cdots + \beta_pX^{(p)}$ accurately represents the relationship between the predictors and the response. Note that we added an error term $\epsilon$ to indicate the unexplained variations or errors present in the data. 
+Note that we added an error term $\epsilon$ to indicate the unexplained variations or errors present in the data. 
 
 ## Linear Regression in Matrix Form
 
@@ -39,43 +39,48 @@ We let $y$ be an $N \times 1$ vector that contains all the ages of person $1$ up
 first column to account for the intercept term $\beta_0$, and the predictor variables in its remaining columns. Each row of this matrix represents one observation. In our example, the design matrix contains $1$'s 
 in its first column and the height and IQ of person 1 up to person N in its second and third columns,
 respectively. We will have a vector containing the coefficients called $\beta \in \mathbb{R}^{(p+1) \times 1}$. The dimension of this vector depends on the number of predictors. 
-Since our example has two predictors (height and IQ), we will have  $\beta = [ \beta_0 \quad \beta_1 \quad \beta_2]^T$, where $\beta_0$ is the intercept term. Lastly, we have a vector $\epsilon \in \mathbb{R}^{N \times 1}$ that represents the associated variations in the data.
+Since our example has two predictors (height and IQ), we will have  $\beta = [ \beta_0 \quad \beta_1 \quad \beta_2]^T$, where $\beta_0$ is the intercept term. Lastly, we have a vector $\epsilon \in \mathbb{R}^{N \times 1}$ that represents the errors. Then, the linear regression model in matrix form is:
 
-  $$y = \begin{bmatrix}
+$$y = X\beta + \epsilon$$\\
+  $$\begin{bmatrix}
   y_0\\
   y_1\\
   \cdot\\
   \cdot\\
   \cdot\\
   y_N
-  \end{bmatrix}, X = \begin{bmatrix}
+  \end{bmatrix} = X = \begin{bmatrix}
   1 & X_1^{(1)} & X_1^{(2)} & \cdots & X_1^{(p)}\\
   1 & X_2^{(1)} & X_2^{(2)} & \cdots & X_2^{(p)}\\
   \cdot & \cdot & \cdot & \cdot & \cdot \\
   \cdot & \cdot & \cdot & \cdot & \cdot \\
   \cdot & \cdot & \cdot & \cdot & \cdot \\
   1 & X_N^{(1)} & X_N^{(2)} & \cdots & X_N^{(p)}\\
-  \end{bmatrix}, \beta = \begin{bmatrix} \beta_0 \\
+  \end{bmatrix} \begin{bmatrix} \beta_0 \\
   \cdot \\
   \cdot \\
   \cdot \\
-  \beta_p \end{bmatrix}$$
+  \beta_p \end{bmatrix} +\begin{bmatrix} \epsilon_1 \\
+  \cdot \\
+  \cdot \\
+  \cdot \\
+  \epsilon_N \end{bmatrix} $$
  
-The regression model aims to find coefficients $\beta$ that, when multiplied by the design matrix X, give a good estimate for $y$. Thus, the "fitted" or "predicted" value is called $\hat{y}$
+The regression model aims to find coefficients $\beta$ that, when multiplied by the design matrix X, give a good estimate for $y$. Fitting the linear regression model will give us the fitted or predicted value called $\hat{y}$:
 
   $$\hat{y} =\beta_0 + \sum_{j=1}^{p} X^{(j)} \beta_j = X \beta $$
  
-Note that $\hat{y}$ is an estimate of the true $y$ and we almost always expect that the predicted and the actual value are different. 
+Note that $\hat{y}$ is only an estimate of the true $y$. We almost always expect that the predicted and the actual value are different. 
 
 ## The Loss Function
 
 To reiterate, we do not expect the predictors and the response to have a perfect linear relationship. So, $\hat{y}$ will not be the same as $y$. Our goal is to fit a model that gives $\hat{y}$ as close to $y$ as possible. Intuitively, the perfect model will give $\beta_0, \beta_1, \cdots, \beta_p$ estimates such that, when using these estimates to calculate $\hat{y}$, the overall distance/difference between $\hat{y}$ and $y$ is minimized.
 
-We use the Ordinary Least Squares (OLS) method to estimate the coefficients of the regression model. OLS aims to find the best-fit line that minimizes the overall difference between the predicted values and the actual values (also known that the residual sum of squares or RSS). We define the loss function $L(y,\hat{y})$ that measures the overall difference between the actual $y$ and the predicted $\hat{y}$. For a particular observation $n$, the loss function is:
+We use the Ordinary Least Squares (OLS) method to estimate the coefficients of the regression model. OLS aims to find the best-fit line that minimizes the overall difference between the predicted values and the actual values (also known that the residual sum of squares or RSS). We define the loss function $L(y,\hat{y})$ that measures the overall difference between the actual $y$ and the predicted $\hat{y}$. For a particular observation $n$, the sum of squares difference between $y$ and $\hat{y}$ is:
 
-  $$L(y_n,\hat{y_n}) = (y_n - \hat{y_n}) = (y_n - X_n \beta)^2$$
+  $$ (y_n - \hat{y_n})^2 = (y_n - X_n \beta)^2$$
  
- Then, the overall difference is:
+ If we have $N$ observations,the overall difference, or the loss function is:
 
   $$L(y,\hat{y}) = \sum_{n=1}^N(y_n - X \beta)^2$$
 
@@ -197,13 +202,13 @@ Then,
   13.3886
   \end{bmatrix}$$
   
-Given the fifth person's height $(0.0746)$ and weight $(-0.1690)$, we can predict their age using the estimates we just calculated:
+Given the fifth person's height $(0.0746)$ and IQ $(-1.0388)$, we can predict their age using the estimates we just calculated:
 
   $$\hat{y} = \hat{\beta_0} + 0.0746 \hat{\beta_1} + (-1.0388) \hat{\beta_2} $$\\
   $$\hat{y} =  19.5 + 0.0746 * (-3.0588)   -1.0388 * 13.3886 $$\\
   $$\hat{y} = 5.3637 = 6$$
 
-Given the dataset containing the age, height, and weight of four observations, we fit a linear regression model and used the coefficients to predict the age of a new person using (unseen) data on their height and weight. 
+Given the dataset containing the age, height, and IQ score of four observations, we fit a linear regression model and used the coefficients to predict the age of a new person from (unseen) height and IQ data. 
 
 ## Limitations
 Linear regression is a widely used statistical technique for modeling the relationship between a dependent variable and one or more independent variables. However, it has certain limitations that should be considered. Recall when deriving the closed form solution of $\hat{\beta}$, we need $X^TX)$ to be invertible. This condition does not always hold. It is proven that
