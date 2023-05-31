@@ -31,6 +31,7 @@ y_2 &= \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)}
 &\cdots\\
 y_100 &= \beta_0 + \beta_1X_100^{(1)} + \beta_2X_100^{(2)} + \cdots + \beta_pX_100^{(p)} + \epsilon_100
 \end{align}$$
+
 Writing out all $100$ equations is a very inefficient way to express our model. Therefore, it is customary to formulate the linear regression model in matrix form. 
 
 We let $y$ be an $N \times 1$ vector that contains all the ages of person $1$ upto person $N$. Usually, we say $y \in \mathbb{R}^{(N \times 1)}$. We will create a matrix $X \in \mathbb{R}^{N \times (p+1)} $, where $p$ is the number of predictor variables. Usually, this matrix is called the design matrix that contains $1$'s in its
