@@ -1,14 +1,16 @@
 ---
 layout: post
-title: "Multiple Linear Regression"
+title: "Multiple Linear Regression (Part 1)"
 author: "Diep Nguyen"
 tags: [regression,ml]
 categories: journal
 image: lr_bg.jpg
 ---
 
+In this article, we define multiple linear regression and represent it in matrix form. Further, we look at the Ordinary Least Squares method and go over the math behind obtaining the normal equation and deriving the closed-form solution for the coefficient estimates. We look at a small example that uses this closed-form solution to make predictions. 
+
 ## What is Multiple Linear Regression?
-Linear regression is a machine learning technique used to model the relationship between a quantitative response variable and one or more predictors. The goal is to find a linear model that captures the relationship between the independent (predictor) variables and the dependent (response) variable. This model can then be used to predict new, unseen data. When there are multiple predictors involved, we use the term "multiple linear regression" to denote the extension of simple linear regression to accommodate more than one predictor variable. 
+Linear regression is a statistical learning technique used to model the relationship between a quantitative response variable and one or more predictors. The goal is to find a linear model that captures the relationship between the independent (predictor) variables and the dependent (response) variable. This model can then be used to predict new, unseen data. When there are multiple predictors involved, we use the term "multiple linear regression" to denote the extension of simple linear regression to accommodate more than one predictor variable. 
 
 For example, there might be a linear relationship between a person's age and their height and weight. We can fit a linear regression model using the available age, height, and weight data to capture this relationship. Then, the response (denoted as $y$ will be the age we try to predict. 
 There are two predictors: height (denoted as $X^{(1)}$) and weight (denoted as $X^{(2)}$). Linear regression uses a linear equation with coefficients $\beta$ to capture the relationship between the predictors 
@@ -60,7 +62,7 @@ Note that we use $\hat{y}$ instead of $y$ because there are almost always some u
 
 To reiterate, we do not expect the predictors and the response to have a perfect linear relationship. So, $\hat{y}$ will not be the same as $y$. However, we can still fit a model that gives $\hat{y}$ as close to $y$ as possible. Intuitively, the perfect model will give $\beta_0, \beta_1, \cdots, \beta_p$ estimates such that, when using these estimates to calculate $\hat{y}$, the overall distance/difference between $\hat{y}$ and $y$ is minimized.
 
-We use the Ordinary Least Squares (OLS) method to estimate the coefficients of the regression model. OLS aims to find the best-fit line that minimizes the overall difference between the predicted values and the actual values (also known that the residual sum of squares or RSS). We define the loss function $L(y,\hat{y})$ that measures the overall difference between the actual $y$ and the predicted $\hat{y}. For a particular observation n, the loss function is:
+We use the Ordinary Least Squares (OLS) method to estimate the coefficients of the regression model. OLS aims to find the best-fit line that minimizes the overall difference between the predicted values and the actual values (also known that the residual sum of squares or RSS). We define the loss function $L(y,\hat{y})$ that measures the overall difference between the actual $y$ and the predicted $\hat{y}$. For a particular observation $n$, the loss function is:
 
   $$L(y_n,\hat{y_n}) = (y_n - \hat{y_n}) = (y_n - X_n \beta)^2$$
  
@@ -104,6 +106,7 @@ Setting this derivative equal to 0 gives us the Normal Equation. This equation i
   $$X^TX \beta = X^T y$$
  
 If $X^TX$ is invertible, we can solve for $\hat{\beta}$:
+
   $$\hat{\beta} = (X^TX)^{-1}X^T y$$
 
 ## Interpretation
@@ -153,7 +156,7 @@ Before we proceed, we should normalize the design matrix. A person's height is m
   1 & 0.3728 & -0.1690\\
   \end{bmatrix}$$
 
-We will also need to normalize the new person's height and weight using the mean and sd height and weight from the dataset. For the fifth person, their normalized height is $0.0746$ and their normalized weight is $-0.1690$.
+We will also need to normalize the new person's height and weight using the mean and standard deviation of the height and weight from our dataset. For the fifth person, their normalized height is $0.0746$ and their normalized weight is $-0.1690$.
 
 Now, we can use the equation $\hat{\beta} = (X^TX)^{-1}X^T y$ to find the coefficients of the regression model. First, we need to find the inverse of $X^TX$. Recall from our derivation above that $X^TX$ has to be non-singular (i.e., $X^TX$ has an inverse).  
 
