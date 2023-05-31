@@ -25,11 +25,12 @@ The phrase "fitting a linear model" means we want to find coefficients $\beta$ s
 ## Linear Regression in Matrix Form
 
 In many cases, the dataset we work with contains multiple observations, such as data on N individuals including their age, height, and IQ. Writing out the linear regression model for each individual can become cumbersome and notation-heavy. For example, if we have data on $100$ observations, then our regression model is:
+
 $$\begin{align}
-y_1 &= \beta_0 + \beta_1X_1^{(1)} + \beta_2X_1^{(2)} + \cdots + \beta_pX_1^{(p)} + \epsilon_1\\
-y_2 &= \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)} + \epsilon_2\\
+&y_1 = \beta_0 + \beta_1X_1^{(1)} + \beta_2X_1^{(2)} + \cdots + \beta_pX_1^{(p)} + \epsilon_1\\
+&y_2 = \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)} + \epsilon_2\\
 &\cdots\\
-y_{100} &= \beta_0 + \beta_1X_{100}^{(1)} + \beta_2X_{100}^{(2)} + \cdots + \beta_pX_{100}^{(p)} + \epsilon_{100}
+&y_{100} = \beta_0 + \beta_1X_{100}^{(1)} + \beta_2X_{100}^{(2)} + \cdots + \beta_pX_{100}^{(p)} + \epsilon_{100}
 \end{align}$$
 
 Writing out all $100$ equations is a very inefficient way to express our model. Therefore, it is customary to formulate the linear regression model in matrix form. 
@@ -170,16 +171,16 @@ Now, we can use the equation $\hat{\beta} = (X^TX)^{-1}X^T y$ to find the coeffi
 
 $$(X^TX)^{-1} = 
   \begin{bmatrix} 
-  2.5e-01 & -1.1485e-17 & 1.5963e-17\\
-  -1.1485e-17 & 2.0424 & -1.9133\\
-  1.5963e-17 & -1.9133 & 2.0424
+  2.5\text{e}-01 & 1.1429\text{e}-17 & -9.5382\text{e}-18\\
+  -1.1429\text{e}-17 & 8.2358\text{e}-01 & -6.8730\text{e}-01\\
+  -9.5382\text{e}-18 & -6.8730\text{e}-01 & 8.2358\text{e}-01
   \end{bmatrix}$$
 
 Then, 
   $$\hat{\beta} = \begin{bmatrix} 
-  2.5e-01 & -1.1485e-17 & 1.5963e-17\\
-  -1.1485e-17 & 2.0424 & -1.9133\\
-  1.5963e-17 & -1.9133 & 2.0424
+  2.5\text{e}-01 & 1.14\text{e}-17 & -9.54\text{e}-18\\
+  -1.14\text{e}-17 & 8.24\text{e}-01 & -6.87\text{e}-01\\
+  -9.54\text{e}-18 & -6.87\text{e}-01 & 8.24\text{e}-01
   \end{bmatrix} \begin{bmatrix} 
   1 & 1& 1& 1\\
   0.7704 & -1.7148 & 0.5716 & 0.3728\\
@@ -192,15 +193,15 @@ Then,
   \end{bmatrix}
   $$\\
   $$\hat{\beta} = \begin{bmatrix} 19.5\\
-  3.5503\\
-  4.8721
+  -3.0588\\
+  13.3886
   \end{bmatrix}$$
   
 Given the fifth person's height $(0.0746)$ and weight $(-0.1690)$, we can predict their age using the estimates we just calculated:
 
-  $$\hat{y} = \hat{\beta_0} + 0.0746 \hat{\beta_1} + (-0.1690) \hat{\beta_2} $$\\
-  $$\hat{y} =  19.5 + 0.0746 * 3.5503  -0.1690 * 4.8721 $$\\
-  $$\hat{y} = 22.811 = 23$$
+  $$\hat{y} = \hat{\beta_0} + 0.0746 \hat{\beta_1} + (-1.0388) \hat{\beta_2} $$\\
+  $$\hat{y} =  19.5 + 0.0746 * (-3.0588)   -1.0388 * 13.3886 $$\\
+  $$\hat{y} = 5.3637 = 6$$
 
 Given the dataset containing the age, height, and weight of four observations, we fit a linear regression model and used the coefficients to predict the age of a new person using (unseen) data on their height and weight. 
 
@@ -232,12 +233,12 @@ We looked at how the normal equation can be used to solve for the coefficient es
 ## Numerical Example  
 Let's use the same dataset from above:
 
-Person | Age  | Height | Weight
+Person | Age  | Height | IQ
 :-----:|:----:|:------:|:-------:
-1      | 20   | 170    | 60
+1      | 20   | 170    | 99
 2      | 6    | 45     | 20
-3      | 40   | 160    | 50
-4      | 12   | 150    | 40
+3      | 40   | 160    | 101
+4      | 12   | 150    | 45
 
 We want to predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using this dataset and gradient descent.
 
