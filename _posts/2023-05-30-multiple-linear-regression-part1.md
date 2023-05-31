@@ -25,7 +25,7 @@ The phrase "fitting a linear model" means we want to find coefficients $\beta$ s
 ## Linear Regression in Matrix Form
 
 In many cases, the dataset we work with contains multiple observations, such as data on N individuals including their age, height, and IQ. Writing out the linear regression model for each individual can become cumbersome and notation-heavy. For example, if we have data on $100$ observations, then our regression model is:
-$$\begin{alignt}
+$$\begin{align}
 y_1 &= \beta_0 + \beta_1X_1^{(1)} + \beta_2X_1^{(2)} + \cdots + \beta_pX_1^{(p)} + \epsilon_1\\
 y_2 &= \beta_0 + \beta_1X_2^{(1)} + \beta_2X_2^{(2)} + \cdots + \beta_pX_2^{(p)} + \epsilon_2\\
 &\cdots\\
