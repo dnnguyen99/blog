@@ -4,7 +4,7 @@ title: "NLP-Driven Predictive Modeling of Clinical Trial Status"
 author: "Diep Nguyen"
 tags: [nlp, ml,neural network]
 categories: journal
-image: lr_bg.jpg
+image: bg_clinical.jpg
 ---
 
 # Introduction/ Motivation
@@ -39,21 +39,32 @@ The Word2Vec model provides embeddings for all the words in a document. With a d
 Assume that for an observation $n$, we have the following criteria: “written consent and health record”. Then, the list of tokenized text after removing punctuations and stopwords will be: [written, consent, health, record]. For each word, assume we have the following word embeddings with dimensions $1 \times 100$ for each word:
 
 Written: $[0.14, -1.21, 0.48, …]$
+
 Consent: $[0.95, 1.64, -0.43, …]$
+
 Health: $[-0.02, 1.85, -0.94, …]$
+
 Record: $[1.54, 0.73, -1.08, …]$
 
 Then, we obtain the following embeddings for observation $n$:
-$[\quad [0.14, -1.21, 0.48, …],  [0.95, 1.64, -0.43, …],  [-0.02, 1.85, -0.94, …], [1.54, 0.73, -1.08, …] \quad ]$ 
+
+$$[\quad [0.14, -1.21, 0.48, …],  [0.95, 1.64, -0.43, …],  [-0.02, 1.85, -0.94, …], [1.54, 0.73, -1.08, …] \quad ]$$ 
 
 We want to use these numeric embeddings to train our model. While one approach is to input all individual embeddings as separate features, we might prefer to have a combined embedding for each word. According to the Word2Vec documentation, a common method is to create a document vector for each observation by averaging the embeddings of all the words within the document. For instance, if we have:
 
 $mean(0.14, -1.21, 0.48, …) = a1$
+
 $mean(0.95, 1.64, -0.43, …) = a2$
+
 $mean(-0.02, 1.85, -0.94, …) = a3$
+
 $mean(1.54, 0.73, -1.08, …) = a4$
 
-Then, the document vector for this particular observation will be: [a1, a2, a3, a4] and we can use this as input for our machine-learning model. Each of the $a_i$ values represents the $i^{th}$ feature/predictor for this particular observation. 
+Then, the document vector for this particular observation will be
+
+$$[a1, a2, a3, a4]$$
+
+We can use this as input for our machine-learning model. Each of the $a_i$ values represents the $i^{th}$ feature/predictor for this particular observation. 
 
 It is important to note that averaging the word embeddings, as described earlier, is just one approach to aggregating the information. However, this method may lead to a loss of relevant word information that could be valuable for the classification task. For instance, in a bag-of-words representation, if a few words are highly relevant to the classification task while most words are irrelevant, the classifier can effectively learn this distinction. However, by averaging the vectors of all the words in the document, the classifier loses this opportunity.
 
@@ -61,7 +72,7 @@ Considering this limitation, it is worth exploring alternative methods such as D
 
 
 # Word2Vec Results
-Our model obtained an accuracy of 62.13% and an AUC score of 0.6202. An AUC score of 0.6202 suggests that the model possesses some discriminatory power, although its overall performance can be considered fair. To gain further insight into the model's shortcomings, let's examine the confusion matrix below. By analyzing the instances of false positives and false negatives, we can better understand the specific areas where our model struggles.
+Our model obtained an accuracy of $62.13$% and an AUC score of $0.6202$. An AUC score of $0.6202$ suggests that the model possesses some discriminatory power, although its overall performance can be considered fair. To gain further insight into the model's shortcomings, let's examine the confusion matrix below. By analyzing the instances of false positives and false negatives, we can better understand the specific areas where our model struggles.
 
 ## False positive: when the model predicts a trial was terminated but it was completed
 
@@ -98,4 +109,4 @@ Once the LSTM unit has processed the entire input sequence, the final hidden sta
 LSTM Results
 The model has 71.21% accuracy and an AUC score of 0.7119. This is an improvement from our random forest model. Having an AUC of 0.7 or above indicates that the model’s performance is good, and it has a moderate ability to distinguish between terminated and completed trials. One way that could further improve the model’s performance is to consider pre-trained word embeddings generated from large-scale health records or medical articles. Since we trained our embeddings using only the criteria of our trials, 
 
-"The model demonstrates a notable performance with 71.21% accuracy and an AUC score of 0.7119, surpassing our random forest model. An AUC value of 0.7 or higher signifies the model's good performance and its moderate capability to differentiate between terminated and completed trials. To further enhance the model's performance, one promising approach is to incorporate pre-trained word embeddings derived from extensive health records or medical articles. Our current embeddings were trained solely on the criteria of our trials, which might not capture relationships between rare medical terms or nuanced concepts. By using embeddings from a broader medical context ([like this](https://github.com/ncbi-nlp/BioSentVec#biowordvec)), the model could potentially gain a deeper understanding of the medical domain, leading to a more accurate classification of trial outcomes.
+"The model demonstrates a notable performance with 71.21% accuracy and an AUC score of 0.7119, surpassing our random forest model. An AUC value of 0.7 or higher signifies the model's good performance and its moderate capability to differentiate between terminated and completed trials. To further enhance the model's performance, one promising approach is to incorporate pre-trained word embeddings derived from extensive health records or medical articles. Our current embeddings were trained solely on the criteria of our trials, which might not capture relationships between rare medical terms or nuanced concepts. By using embeddings from a broader medical context ([such as this](https://github.com/ncbi-nlp/BioSentVec#biowordvec)), the model could potentially gain a deeper understanding of the medical domain, leading to a more accurate classification of trial outcomes.
