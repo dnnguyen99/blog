@@ -14,12 +14,12 @@ Clinical trials are research studies conducted to evaluate the safety and effect
 Many clinical trials have been terminated due to failure to meet the required accrual rate. The success of clinical trials relies on the participation and enrollment of volunteers. However, each trial has specific inclusion and exclusion criteria that potential volunteers must meet in order to participate. Setting overly specific or strict criteria may result in low enrollment rates. This article aims to explore the relationship between inclusion/exclusion criteria and the termination of clinical trials. To achieve this, the text data will be processed using the Continuous Bag of Words method to generate embeddings, and the trial status will be classified using a random forest algorithm. Additionally, pre-trained word embeddings will be utilized in a Long Short-Term Memory (LSTM) network, a type of Recurrent Neural Network (RNN), for the classification task. 
 
 # Data Preprocessing and Exploration
-The data used for this project is available on the [ClinicalTrials.gov](ClinicalTrials.gov) website. Unfortunately, the inclusion/exclusion criteria cannot be downloaded directly. Due to this limitation, the site was scraped to obtain this feature. The project will specifically focus on clinical trials for cancer. After removing any NaN values, a total of $17,065$ cancer-related clinical trials (both interventional and observational) were considered. Out of these trials, $8,168$ were terminated, while $8,897$ trials were completed. The summary of the data is provided below.
+The data used for this project is available on the [ClinicalTrials.gov](ClinicalTrials.gov) website. Unfortunately, the inclusion/exclusion criteria cannot be downloaded directly. Due to this limitation, the site was scraped to obtain this feature. The project will specifically focus on clinical trials for cancer. After removing any NaN values, a total of $17,065$ cancer-related clinical trials (both interventional and observational) were considered. Out of these trials, $8,168$ were terminated, while $8,897$ trials were completed. Below is a summary of the data used in the analysis. Each clinical trial is identified by a unique NCTID. The "Criteria" column includes both the inclusion criteria (requirements for participating in a trial) and exclusion criteria (conditions that disqualify individuals from participating). The trial status is categorized into two categories: Terminated and Completed.
 
-
-(Insert data here)
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/data_illustration.jpg?raw=true){:width="600px"}
 
 Now, the text data will be pre-processed. The inclusion/exclusion criteria for each observation, referred to as "criteria," will be examined. Each clinical trial has a list of criteria, which we will call a "document." To start, newline characters and digits will be removed from each document. Then, punctuation will be eliminated, and all letters will be converted to lowercase. The text will then be tokenized, breaking down the sentences into individual words. This step enables us to apply word embeddings to the sentences. Lastly, it is necessary to ensure that all documents have the same length for LSTMs.
+
 To achieve this,  the total number of words in each document can be analyzed. By examining the statistics of the dataset, it is observed that the average number of words in the document is approximately $304$ words. This means that we should truncate documents that are longer than 300 words and add padding to documents that have fewer than $300$ words. This threshold strikes a balance between capturing sufficient context and ensuring computational efficiency.
 
 # Generate Word Embeddings
@@ -62,7 +62,7 @@ $mean(1.54, 0.73, -1.08, …) = a4$
 
 Then, the document vector for this particular observation will be
 
-$$[a1, a2, a3, a4]$$
+$$[a1, \quad a2, \quad a3, \quad a4]$$
 
 We can use this as input for our machine-learning model. Each of the $a_i$ values represents the $i^{th}$ feature/predictor for this particular observation. 
 
@@ -94,11 +94,11 @@ Our RNN consists of many LSTM units. In each LSTM unit,  there are two key compo
 
 At each time step, the LSTM unit considers the embeddings of a word (retrieved using the embedding matrix) and processes them while taking into account the previous words and their contextual information. The hidden state in each unit captures the information and context of the word input at a specific time step $t$.  The LSTM unit takes the current word embeddings and the previous hidden state as inputs to compute the updated hidden state for that time step. In the first time step ($t = 0$), the first LSTM unit initializes the hidden state based on the input word embeddings. Once the unit processes the first embeddings, it updates the hidden state and passes it to the next LSTM unit at the next time step. LSTMs continue to process the subsequent words in the input sequence, updating the hidden state at each time step. 
 
-[insert diagram here] 
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm.jpg?raw=true){:width="600px"}
 
 To update the cell state, LSTMs use a series of operations involving gates. To update the hidden state, LSTMs use the current input, the previous hidden state, and the current cell state.
 
-[insert diagram here] 
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm_unit.jpg?raw=true){:width="600px"}
 
 In an LSTM unit, several components work together to process information. The forget gate decides what information from the previous cell state should be forgotten based on the previous hidden state and current input. The input gate determines which parts of the current input should be stored in the cell state, while also considering the previous hidden state. These gates help update the cell state.
 Next, the output gate decides how much information from the updated cell state should be used to compute the updated hidden state. It uses the previous hidden state and current input to control the output of the cell state. In the illustration above, the updated cell state is passed through a $tanh$ activation function and multiplied by the output gate to obtain the updated hidden state. 
@@ -106,7 +106,6 @@ By performing these computations at each time step, the hidden state of the LSTM
 
 Once the LSTM unit has processed the entire input sequence, the final hidden state will capture the LSTM's encoded understanding of the entire input text. This final hidden state serves as the input to a fully connected layer. In order to obtain a binary classification, we apply an activation function, such as the sigmoid function. The output of this function will be a value ranging from 0 to 1, and by applying a threshold, such as 0.5, we can make a prediction of whether the trial is completed or terminated.
 
-LSTM Results
-The model has 71.21% accuracy and an AUC score of 0.7119. This is an improvement from our random forest model. Having an AUC of 0.7 or above indicates that the model’s performance is good, and it has a moderate ability to distinguish between terminated and completed trials. One way that could further improve the model’s performance is to consider pre-trained word embeddings generated from large-scale health records or medical articles. Since we trained our embeddings using only the criteria of our trials, 
+# LSTM Results
 
-"The model demonstrates a notable performance with 71.21% accuracy and an AUC score of 0.7119, surpassing our random forest model. An AUC value of 0.7 or higher signifies the model's good performance and its moderate capability to differentiate between terminated and completed trials. To further enhance the model's performance, one promising approach is to incorporate pre-trained word embeddings derived from extensive health records or medical articles. Our current embeddings were trained solely on the criteria of our trials, which might not capture relationships between rare medical terms or nuanced concepts. By using embeddings from a broader medical context ([such as this](https://github.com/ncbi-nlp/BioSentVec#biowordvec)), the model could potentially gain a deeper understanding of the medical domain, leading to a more accurate classification of trial outcomes.
+The model demonstrates a notable performance with 71.21% accuracy and an AUC score of 0.7119, surpassing our random forest model. An AUC value of 0.7 or higher signifies the model's good performance and its moderate capability to differentiate between terminated and completed trials. To further enhance the model's performance, one promising approach is to incorporate pre-trained word embeddings derived from extensive health records or medical articles. Our current embeddings were trained solely on the criteria of our trials, which might not capture relationships between rare medical terms or nuanced concepts. By using embeddings from a broader medical context ([such as this](https://github.com/ncbi-nlp/BioSentVec#biowordvec)), the model could potentially gain a deeper understanding of the medical domain, leading to a more accurate classification of trial outcomes.
