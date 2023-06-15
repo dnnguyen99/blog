@@ -16,7 +16,7 @@ Many clinical trials have been terminated due to failure to meet the required ac
 # Data Preprocessing and Exploration
 The data used for this project is available on the [ClinicalTrials.gov](ClinicalTrials.gov) website. Unfortunately, the inclusion/exclusion criteria cannot be downloaded directly. Due to this limitation, the site was scraped to obtain this feature. The project will specifically focus on clinical trials for cancer. After removing any NaN values, a total of $17,065$ cancer-related clinical trials (both interventional and observational) were considered. Out of these trials, $8,168$ were terminated, while $8,897$ trials were completed. Below is a summary of the data used in the analysis. Each clinical trial is identified by a unique NCTID. The "Criteria" column includes both the inclusion criteria (requirements for participating in a trial) and exclusion criteria (conditions that disqualify individuals from participating). The trial status is categorized into two categories: Terminated and Completed.
 
-![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/data_illustration.jpg?raw=true){:width="600px"}
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/data_illustration.png?raw=true){:width="600px"}
 
 Now, the text data will be pre-processed. The inclusion/exclusion criteria for each observation, referred to as "criteria," will be examined. Each clinical trial has a list of criteria, which we will call a "document." To start, newline characters and digits will be removed from each document. Then, punctuation will be eliminated, and all letters will be converted to lowercase. The text will then be tokenized, breaking down the sentences into individual words. This step enables us to apply word embeddings to the sentences. Lastly, it is necessary to ensure that all documents have the same length for LSTMs.
 
@@ -94,11 +94,12 @@ Our RNN consists of many LSTM units. In each LSTM unit,  there are two key compo
 
 At each time step, the LSTM unit considers the embeddings of a word (retrieved using the embedding matrix) and processes them while taking into account the previous words and their contextual information. The hidden state in each unit captures the information and context of the word input at a specific time step $t$.  The LSTM unit takes the current word embeddings and the previous hidden state as inputs to compute the updated hidden state for that time step. In the first time step ($t = 0$), the first LSTM unit initializes the hidden state based on the input word embeddings. Once the unit processes the first embeddings, it updates the hidden state and passes it to the next LSTM unit at the next time step. LSTMs continue to process the subsequent words in the input sequence, updating the hidden state at each time step. 
 
-![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm.jpg?raw=true){:width="600px"}
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm.png?raw=true){:width="600px"}
 
 To update the cell state, LSTMs use a series of operations involving gates. To update the hidden state, LSTMs use the current input, the previous hidden state, and the current cell state.
 
-![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm_unit.jpg?raw=true){:width="600px"}
+![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/lstm_unit.png?raw=true){:width="600px"}
+*An LSTM unit. Image credits to: https://towardsdatascience.com/lstm-networks-a-detailed-explanation-8fae6aefc7f9*
 
 In an LSTM unit, several components work together to process information. The forget gate decides what information from the previous cell state should be forgotten based on the previous hidden state and current input. The input gate determines which parts of the current input should be stored in the cell state, while also considering the previous hidden state. These gates help update the cell state.
 Next, the output gate decides how much information from the updated cell state should be used to compute the updated hidden state. It uses the previous hidden state and current input to control the output of the cell state. In the illustration above, the updated cell state is passed through a $tanh$ activation function and multiplied by the output gate to obtain the updated hidden state. 
