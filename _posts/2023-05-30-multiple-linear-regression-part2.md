@@ -42,22 +42,20 @@ Where $\bar{y}$ is the average of all the response variables.
 ## Linear Regression Assumptions
 Before fitting a model, we need to make sure that our data meets all of the assumptions to perform linear regression.
 
-$$ \begin{itemize}
+- Since we are looking at a regression problem, we need to ensure that our response $y$ is a continuous value. 
 
-\item Since we are looking at a regression problem, we need to ensure that our response $y$ is a continuous value. 
+- We want to use a straight line to model the relationship between the response and the predictors in linear regression. So, we need to make sure that there is a linear relationship between each predictor and the response. We can quickly check for this assumption using a scatterplot. 
 
-\item We want to use a straight line to model the relationship between the response and the predictors in linear regression. So, we need to make sure that there is a linear relationship between each predictor and the response. We can quickly check for this assumption using a scatterplot. 
+- All observations should be independent. In other words, the value of one observation should not be influenced by the value of another observation.  ​​
 
-\item All observations should be independent. In other words, the value of one observation should not be influenced by the value of another observation.  ​​
+- There should be no significant outliers.
 
-\item There should be no significant outliers.
+- There should be mild or no correlation between the predictors. For example, we cannot predict a person’s age using both height and weight since the 2 predictors are highly correlated. This phenomenon is known as multi-collinearity. 
 
-\item There should be mild or no correlation between the predictors. For example, we cannot predict a person’s age using both height and weight since the 2 predictors are highly correlated. This phenomenon is known as multi-collinearity. 
+- The variance of the errors (the difference between $\hat{y}$ and $y$) should be constant across all levels of the independent variables. This is known as homoscedasticity and we should check for this assumption after we fit the model by plotting the errors against the predicted values. If the spread of the errors appears to follow a particular pattern (e.g., a funnel shape), it means that this assumption is violated. 
 
-\item The variance of the errors (the difference between $\hat{y}$ and $y$) should be constant across all levels of the independent variables. This is known as homoscedasticity and we should check for this assumption after we fit the model by plotting the errors against the predicted values. If the spread of the errors appears to follow a particular pattern (e.g., a funnel shape), it means that this assumption is violated. 
+- The errors should be normally distributed. To check for this assumption, we can look at the histogram of the errors after fitting the model. The histogram should resemble a bell-shaped curve. 
 
-\item The errors should be normally distributed. To check for this assumption, we can look at the histogram of the errors after fitting the model. The histogram should resemble a bell-shaped curve. 
-\end{itemize}$$
 
 Note that we used a lot of visualization techniques to check for the assumptions above. In reality, visual assessment might not be conclusive and we should perform other statistical tests. 
 
@@ -65,7 +63,7 @@ Note that we used a lot of visualization techniques to check for the assumptions
 
 For this demonstration, we will use one of `sckikit-learn` toy datasets called `diabetes`. This dataset has a total of 442 observations. The first 10 columns of the data are predictors such as BMI value, average blood pressure, and blood serum measurements. We want to use these features to predict the 11th column, the target, which measures the disease progression one year after baseline. 
 
-We will check for all the assumptions, split the data into a train and a test set, perform multiple linear regression, and evaluate the model’s performance using the above metrics. Lastly, we will link back to our previous post (link) and look at how we can obtain the $\beta$ estimates (commonly known as the regression coefficients) using linear algebra. 
+We will check for all the assumptions, split the data into a train and a test set, perform multiple linear regression, and evaluate the model’s performance using the above metrics. Lastly, we will link back to our [previous post]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}) and look at how we can obtain the $\beta$ estimates (commonly known as the regression coefficients) using linear algebra. 
 
-The detailed codes and analysis can be found in this notebook 
+The detailed codes and analysis can be found in [this notebook]({{ site.github.url }}{% post_url 2023-06-15-clinical-trial-status %})
 
