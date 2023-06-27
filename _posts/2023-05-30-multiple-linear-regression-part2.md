@@ -24,6 +24,7 @@ Finally, the test set is used to assess the model's performance on unseen data. 
 Mean squared error (`sklearn.metrics.mean_squared_error(y_true, y_pred)`), is one of the most common metrics for evaluating a regression model. The MSE measures how far off our regression line is from the true response values. The way to calculate the MSE is in its name, we need to first square all the ‘errors’ (the difference between the true and predicted values), and then take the mean. The formula is given below.
 
 $$MSE = \frac{1}{n} \sum{i = 1}^{n} (y_i - \hat{y_i})^2$$ 
+
 If the predicted values are the same as the true values, the MSE is equal to 0. The larger the distance between the predicted and the true values, the larger the MSE. Having a low MSE means the model’s predictions are close to the actual values, and having a large MSE means that our model gives predictions that are very different from the true values. Because the error or the difference is squared, MSE gives higher weightage to larger errors. So, this metric is more sensitive to outliers or large errors in the data. This metric is helpful when we want to place emphasis on larger errors. 
 
 ## Mean Absolute Error (MAE)
@@ -42,12 +43,19 @@ Where $\bar{y}$ is the average of all the response variables.
 Before fitting a model, we need to make sure that our data meets all of the assumptions to perform linear regression.
 
 $$ \begin{itemize}
+
 \item Since we are looking at a regression problem, we need to ensure that our response $y$ is a continuous value. 
+
 \item We want to use a straight line to model the relationship between the response and the predictors in linear regression. So, we need to make sure that there is a linear relationship between each predictor and the response. We can quickly check for this assumption using a scatterplot. 
+
 \item All observations should be independent. In other words, the value of one observation should not be influenced by the value of another observation.  ​​
+
 \item There should be no significant outliers.
+
 \item There should be mild or no correlation between the predictors. For example, we cannot predict a person’s age using both height and weight since the 2 predictors are highly correlated. This phenomenon is known as multi-collinearity. 
+
 \item The variance of the errors (the difference between $\hat{y}$ and $y$) should be constant across all levels of the independent variables. This is known as homoscedasticity and we should check for this assumption after we fit the model by plotting the errors against the predicted values. If the spread of the errors appears to follow a particular pattern (e.g., a funnel shape), it means that this assumption is violated. 
+
 \item The errors should be normally distributed. To check for this assumption, we can look at the histogram of the errors after fitting the model. The histogram should resemble a bell-shaped curve. 
 \end{itemize}$$
 
