@@ -83,6 +83,7 @@ $$\beta^{(1)} = \begin{bmatrix}
 -64.9157\\
 -86.688
 \end{bmatrix}$$\\
+
 $$\beta^{(1)} = \begin{bmatrix} 1.56\\
 0.6492\\
 0.8669
