@@ -31,12 +31,12 @@ Person | Age  | Height | IQ
 3      | 40   | 160    | 101
 4      | 12   | 150    | 45
 
-After normalizing the dataset and get the design matrix $X = \begin{bmatrix}
+After normalizing the dataset and get the design matrix $$X = \begin{bmatrix}
   1 & 0.7704 & 1.1832\\
   1 & -1.7148 & -1.5213\\
   1 & 0.5716 & 0.5071\\
   1 & 0.3728 & -0.1690\\
-  \end{bmatrix}$, we can predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using gradient descent. 
+  \end{bmatrix}$$, we can predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using gradient descent. 
 
 ### GD Step 1: Initialize the estimates
 First, let us start with a random initiation of $\beta$. This can be anything, but let's initialize it to be a vector of zeros, $\beta^{(0)} = [ 0 \quad 0 \quad 0]^T$.
