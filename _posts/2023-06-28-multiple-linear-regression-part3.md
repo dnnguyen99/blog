@@ -8,7 +8,7 @@ image: lr3_bg.jpg
 ---
 > In this article, we will look at another technique to calculate the regression coefficients $\beta$ called Gradient Descent. This is an optimization technique that involves taking the gradient to find the optimal $\beta$ values that minimize the loss function. 
 
-
+ 
 ## Optimization and Linear Regression
 In the [previous post]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}), we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Our loss function from the OLS method remains the same. Now, we will discuss a different approach that uses an optimization technique called Gradient Descent (GD) to find $\beta$ estimates that minimize the loss function. GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
 
