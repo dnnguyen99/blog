@@ -10,7 +10,7 @@ image: lr3_bg.jpg
 
 
 ## Optimization and Linear Regression
-In the previous post, we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Now, we will discuss a different method that uses an optimization technique called Gradient Descent (GD). GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
+In the [previous post]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}), we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Our loss function from the OLS method remains the same. Now, we will discuss a different approach that uses an optimization technique called Gradient Descent (GD) to find $\beta$ estimates that minimize the loss function. GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
 
 1. $\beta^{(i)}$: the current $\beta$ estimate
 2. $\beta^{(i+1)}$: the new estimate obtained from $\beta$ after one iteration of GD
@@ -22,7 +22,7 @@ In the previous post, we looked at how the normal equation can be used to solve 
   $$\beta^{(i+1)} = \beta^{(i)} - \lambda \nabla L(y, \hat{y}) $$
  
 ## Numerical Example  
-Let's use the same dataset used in Multiple Linear Regression (Part 1):
+Let's use the same dataset used in [Multiple Linear Regression (Part 1)]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}):
 
 Person | Age  | Height | IQ
 :-----:|:----:|:------:|:-------:
