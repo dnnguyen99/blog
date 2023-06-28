@@ -1,5 +1,16 @@
+---
+layout: post
+title: "Multiple Linear Regression (Part 3)"
+author: "Diep Nguyen"
+tags: [linear regression, optimization]
+categories: journal
+image: lr3_bg.jpg
+---
+> In this article, we will look at another technique to calculate the regression coefficients $\beta$ called Gradient Descent. This is an optimization technique that involves taking the gradient to find the optimal $\beta$ values that minimize the loss function. 
+
+
 ## Optimization and Linear Regression
-We looked at how the normal equation can be used to solve for the coefficient estimates above. Now, we will discuss a different method that uses an optimization technique called Gradient Descent (GD). GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
+In the previous post, we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Now, we will discuss a different method that uses an optimization technique called Gradient Descent (GD). GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
 
 1. $\beta^{(i)}$: the current $\beta$ estimate
 2. $\beta^{(i+1)}$: the new estimate obtained from $\beta$ after one iteration of GD
@@ -11,7 +22,7 @@ We looked at how the normal equation can be used to solve for the coefficient es
   $$\beta^{(i+1)} = \beta^{(i)} - \lambda \nabla L(y, \hat{y}) $$
  
 ## Numerical Example  
-Let's use the same dataset from above:
+Let's use the same dataset used in Multiple Linear Regression (Part 1):
 
 Person | Age  | Height | IQ
 :-----:|:----:|:------:|:-------:
@@ -25,8 +36,8 @@ We want to predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using thi
 ### GD Step 1: Initialize the estimates
 First, let us start with a random initiation of $\beta$. This can be anything, but let's initialize it to be a vector of zeros, $\beta^{(0)} = [ 0 \quad 0 \quad 0]^T$.
 
-### GD Step 2: Calculate gradient of the loss function using the current estimates
-Now, we need to find the gradient of the loss function, $\nabla L(y,\hat{y})$ . This is the same as taking the derivative of the loss function w.r.t. $\beta$. Luckily, we know from the derivation of the Normal Equation above that 
+### GD Step 2: Calculate the gradient of the loss function using the current estimates
+Now, we need to find the gradient of the loss function, $\nabla L(y,\hat{y})$. This is the same as taking the derivative of the loss function w.r.t. $\beta$. Luckily, we know from the derivation of the Normal Equation in Part 1 that 
 
 $$\nabla L(y,\hat{y}) = - 2X^T y + 2X^TX \beta= 2X^T(X \beta -y)$$
 
@@ -56,7 +67,7 @@ $$\nabla L(y,\hat{y}) = \begin{bmatrix}-156\\
 \end{bmatrix}$$
 
 ### GD Step 3: Update the estimates
-Let the step size $\lambda = 0.01$. We can adjust the step size to make the coefficients converge faster. However, we should be careful about using step size that is too large as we might miss the optimal solution. We will update the new estimate using our update rule:
+Let the step size $\lambda = 0.01$. We can adjust the step size to make the coefficients converge faster. However, we should be careful about using a step size that is too large as we might miss the optimal solution. We will update the new estimate using our update rule:
 
 $$\beta^{(1)} = \beta^{(0)} - \lambda \nabla L(y, \hat{y}) $$
 $$\beta^{(1)} = \begin{bmatrix}
@@ -81,7 +92,7 @@ $$\beta = \begin{bmatrix} 19.5 \\
 
 ## Understanding Gradient Descent
 
-Think of gradient descent as trying to find the lowest point on a hill. Imagine that the shape of the hill represents our loss function, which measures how far off the predicted is from the actual response. Our goal is to minimize the loss. So, we want to reach the bottom of the hill, which corresponds to the optimal solution.
+Think of gradient descent as finding the lowest point on a hill. Imagine that the shape of the hill represents our loss function, which measures how far off the predicted is from the actual response. Our goal is to minimize the loss. So, we want to reach the bottom of the hill, which corresponds to the optimal solution.
 
 To start, we pick a random position on the hill (randomly initialize our $\beta$. Now, in order to descend to the bottom, we need to move in the direction of the steepest descent. The gradient of the loss function tells us the direction of the steepest ascent, so we actually want to go in the opposite direction of the gradient.
 
@@ -91,4 +102,9 @@ We take steps down the hill, and the size of each step is determined by $\lambda
 
 
 In summary, gradient descent is like descending a hill to find the lowest point. We start at a random position, move in the opposite direction of the gradient (which points uphill), and adjust the size of our steps using the learning rate. The aim is to find the optimal solution efficiently without overshooting or converging too slowly.
+
+## Difference Between Closed-form Solution and GD in Linear Regression
+Unlike the mathematically derived OLS solution, gradient descent does not give us a closed-form equation for our $\beta$ coefficients. In fact, GD is an iterative method and is more general in the sense that it can be applied to solve other (optimization) problems that involve minimizing an objective function. In the case of linear regression, the objective function is the loss function in OLS. 
+
+It should be noted that the difference we talk about here is the difference in the *approach* of solving OLS: using matrix algebra to get a closed-form solution vs using an iterative method. So, when should we use one instead of the other? GD can be useful if we have a large dataset making it computationally costly to find the inverse of the design matrix. If we have a small/moderate dataset, using the closed-form solution to compute the estimates might be beneficial as GD can take a long time to converge, depending on the random initialization in the beginning and the step-size chosen.
 
