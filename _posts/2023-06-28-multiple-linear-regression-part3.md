@@ -93,7 +93,7 @@ $$\begin{align}
 -64.9157\\
 -86.688
 \end{bmatrix}
-\end{algin}$$
+\end{align}$$
 
 ### GD Step 3: Update the estimates
 Let the step size $\lambda = 0.01$. We can adjust the step size to make the coefficients converge faster. However, we should be careful about using a step size that is too large as we might miss the optimal solution. We will update the new estimate using our update rule:
