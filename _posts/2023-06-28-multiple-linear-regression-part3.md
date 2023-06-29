@@ -74,20 +74,21 @@ $$\nabla L(y,\hat{y}) = \begin{bmatrix}-156\\
 ### GD Step 3: Update the estimates
 Let the step size $\lambda = 0.01$. We can adjust the step size to make the coefficients converge faster. However, we should be careful about using a step size that is too large as we might miss the optimal solution. We will update the new estimate using our update rule:
 
-$$\beta^{(1)} = \beta^{(0)} - \lambda \nabla L(y, \hat{y}) $$
-$$\beta^{(1)} = \begin{bmatrix}
+$$\begin{align} 
+\beta^{(1)} &= \beta^{(0)} - \lambda \nabla L(y, \hat{y})\\
+\beta^{(1)} &= \begin{bmatrix}
   0\\
   0\\
   0
   \end{bmatrix} - 0.01  \begin{bmatrix}-156\\
 -64.9157\\
 -86.688
-\end{bmatrix}$$\\
-
-$$\beta^{(1)} = \begin{bmatrix} 1.56\\
+\end{bmatrix}\\
+\beta^{(1)} &= \begin{bmatrix} 1.56\\
 0.6492\\
 0.8669
-\end{bmatrix} $$
+\end{bmatrix} 
+\end{align}$$
  
 ### GD Step 4: Repeat until convergence
 We repeat steps 2 and 3 to update our estimates until $\beta^{(i+1)} = \beta^{(i)}$. Note that we need to use the current $\beta^{(i)}$ to compute the gradient for each iteration. 
