@@ -63,7 +63,7 @@ $$X = \begin{bmatrix}
   0\\
   0
   \end{bmatrix}$$
-
+ 
 So, 
 
 $$\nabla L(y,\hat{y}) = \begin{bmatrix}-156\\
