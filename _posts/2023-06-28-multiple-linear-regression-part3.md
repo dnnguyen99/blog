@@ -74,7 +74,7 @@ $$\begin{align}
   1 & -1.7148 & -1.5213\\
   1 & 0.5716 & 0.5071\\
   1 & 0.3728 & -0.1690\\
-  \end{bmatrix}^T (\begin{bmatrix}
+  \end{bmatrix}^T \left (\begin{bmatrix}
   1 & 0.7704 & 1.1832\\
   1 & -1.7148 & -1.5213\\
   1 & 0.5716 & 0.5071\\
@@ -88,7 +88,7 @@ $$\begin{align}
   6\\
   40\\
   12
-  \end{bmatrix})\\
+  \end{bmatrix} \right)\\
 \nabla L(y,\hat{y}) &= \begin{bmatrix}-156\\
 -64.9157\\
 -86.688
