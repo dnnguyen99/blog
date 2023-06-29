@@ -10,12 +10,14 @@ image: lr3_bg.jpg
 
  
 ## Optimization and Linear Regression
-In the [previous post]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}), we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Our loss function from the OLS method remains the same. Now, we will discuss a different approach that uses an optimization technique called Gradient Descent (GD) to find $\beta$ estimates that minimize the loss function. GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. Let us introduce a few notations for GD:
+In the [previous post]({{ site.github.url }}{% post_url 2023-05-30-multiple-linear-regression-part1 %}), we looked at how the normal equation can be used to solve for the coefficient estimates $\beta$. Now, we will discuss a different approach that uses an optimization technique called Gradient Descent (GD) to find $\beta$ estimates that minimize the loss function. GD is an iterative method that starts with a random initiation of the $\beta$ estimates and iteratively updates the estimates until convergence. The loss function from the OLS method remains the same. Let us introduce a few notations for GD:
 
 1. $\beta^{(i)}$: the current $\beta$ estimate
-2. $\beta^{(i+1)}$: the new estimate obtained from $\beta$ after one iteration of GD
+2. $\beta^{(i+1)}$: the new estimate obtained from $\beta^{(i)}$ after one iteration of GD
 3. $\lambda$: the learning rate or step size
 4. $\nabla L(y,\hat{y})$ : the gradient of the loss function. This is a vector of derivatives of the loss function w.r.t. $\beta$.
+
+ Note: $\beta^{(i)}$ indicates the estimate at the current step $i$. It is NOT $\beta$ raised to the $i^{th}$ power.
  
  We update $\beta$ in the opposite direction of the gradient of the loss function:
  
