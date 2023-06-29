@@ -68,7 +68,8 @@ $$X = \begin{bmatrix}
  
 So, 
 
-$$\nabla L(y, \hat{y}) = 2 \begin{bmatrix}
+$$\begin{align} 
+\nabla L(y, \hat{y}) &= 2 \begin{bmatrix}
   1 & 0.7704 & 1.1832\\
   1 & -1.7148 & -1.5213\\
   1 & 0.5716 & 0.5071\\
@@ -87,12 +88,12 @@ $$\nabla L(y, \hat{y}) = 2 \begin{bmatrix}
   6\\
   40\\
   12
-  \end{bmatrix})$$
-
-$$\nabla L(y,\hat{y}) = \begin{bmatrix}-156\\
+  \end{bmatrix})\\
+\nabla L(y,\hat{y}) &= \begin{bmatrix}-156\\
 -64.9157\\
 -86.688
-\end{bmatrix}$$
+\end{bmatrix}
+\end{algin}$$
 
 ### GD Step 3: Update the estimates
 Let the step size $\lambda = 0.01$. We can adjust the step size to make the coefficients converge faster. However, we should be careful about using a step size that is too large as we might miss the optimal solution. We will update the new estimate using our update rule:
