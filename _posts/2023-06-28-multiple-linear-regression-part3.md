@@ -41,7 +41,7 @@ After normalizing the dataset and get the design matrix $$X = \begin{bmatrix}
   \end{bmatrix}$$, we can predict $\beta = [ \beta_0  \quad \beta_1 \quad \beta_2]^T$ using gradient descent. 
 
 ### GD Step 1: Initialize the estimates
-First, let us start with a random initiation of $\beta$. This can be anything, but let's initialize it to be a vector of zeros, $\beta^{(0)} = [ 0 \quad 0 \quad 0]^T$.
+First, let us start with a random initiation of $\beta^{(0)}$. This can be anything, but let's initialize it to be a vector of zeros, $\beta^{(0)} = [ 0 \quad 0 \quad 0]^T$.
 
 ### GD Step 2: Calculate the gradient of the loss function using the current estimates
 Now, we need to find the gradient of the loss function, $\nabla L(y,\hat{y})$. This is the same as taking the derivative of the loss function w.r.t. $\beta$. Luckily, we know from the derivation of the Normal Equation in Part 1 that 
