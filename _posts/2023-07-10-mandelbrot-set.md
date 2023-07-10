@@ -24,8 +24,9 @@ If the magnitude of $z$ is greater than $2$ before we reach the maximum number o
 Below is the pseudo-code and a diagram illustrating the process of generating the Mandelbrot set.
 
 ```
-initialize z = 0  
+initialize z = 0
 initialize num_iter = 0
+let max_iter = 100 //adjustable
 while |z| <= 2 AND num_iter < max_iter:
 	z = z * z + c
 	num_iter += 1
@@ -46,7 +47,7 @@ As we can see, all the points in the Mandelbrot set (all the points with `num_it
 The boundaries between the points inside and outside the Mandelbrot set exhibit very intriguing fractal shapes. 
 
 <iframe src="https://public.tableau.com/views/MandelbrotSet_16889171113990/Sheet1?:showVizHome=no&:embed=true"
- width="645" height="645"></iframe>
+ width="645" height="545"></iframe>
 
 ## Exploring Mandelbrot Set: The Multibrot
 The recursive equation $z = z^2 + c$ above can be modified and might yield different 
