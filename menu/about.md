@@ -1,7 +1,6 @@
 ---
 layout: page
 title: Hello and welcome! 
-image: contact.jpg
 permalink: /about
 ---
 
