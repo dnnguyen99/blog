@@ -20,15 +20,15 @@ To determine whether a complex number $c$ is in the Mandelbrot set, the iteratio
 1. When the magnitude of z exceeds a certain threshold (usually 2)
 2. When the number of iterations (`num_iter`) reaches a specified maximum number of iterations (`max_iter`)
 
-If the magnitude of $z$ is greater than $2$ before we reach the maximum number of iterations, it is safe to say that $z$ will probably go to infinity. So, given a complex number $c$, we will iteratively compute $z = z^2 + c$. If $\lvert z \rvert > 2$ while `num_iter` $<$ `max_iter`, then $c$ is not in the Mandelbrot set. Conversely, if we keep iteratively calculating  $z = z^2 + c$ and observe that the magnitude of $z$ is less than $2$ even after we reach the maximum number of iterations, then $c$ is in the Mandelbrot set. 
+If the magnitude of $z$ is greater than $2$ before we reach the maximum number of iterations, it is safe to say that $z$ will probably go to infinity. So, given a complex number $c$, we will iteratively compute $z = z^2 + c$. If $\lvert z \rvert > 2$ while `num_iter < max_iter`, then $c$ is not in the Mandelbrot set. Conversely, if we keep iteratively calculating  $z = z^2 + c$ and observe that the magnitude of $z$ is less than $2$ even after we reach the maximum number of iterations, then $c$ is in the Mandelbrot set. 
 
 Below is the pseudo-code and a diagram illustrating the process of generating the Mandelbrot set.
 
 ```
-initialize z = 0
-initialize num_iter = 0
+let z = 0
+let num_iter = 0
 let max_iter = 100 //adjustable
-while |z| <= 2 AND num_iter < max_iter:
+while magnitude of z <= 2 AND num_iter < max_iter:
 	z = z * z + c
 	num_iter += 1
 return num_iter
