@@ -41,14 +41,12 @@ We will generate a $600 \times 400$ pixels plot. So, we will need to convert eac
 ![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/mandelbrot.png?raw=true){:width="600px"}
 ## Visualizing the Mandelbrot Set in Tableau
 
-We will use Tableau to visualize the Mandelbrot set. One can also directly plot this set in Python. The workbook below can also be viewed on Tableau Public
+We will use Tableau to visualize the Mandelbrot set. One can also directly plot this set in Python. The workbook below can also be viewed on Tableau Public. As we can see, all the points in the Mandelbrot set (all the points with `num_iter == max_iter`) are represented by one color (blue). The other points with `num_iter < max_iter` are points not in the set. Depending on the actual value of `num_iter`, we use a different shade of green to color-code the number of iterations it took for the magnitude of $z$ to exceed $2$. The boundaries between the points inside and outside the Mandelbrot set exhibit intriguing fractal patterns. You can hover the cursor near the boundaries (the thin white regions around the blue shape) and see that this pattern is a result of having different `num_iter` values for each pixel point. 
 
 <iframe src="https://public.tableau.com/views/MandelbrotSet_16889171113990/Sheet1?:showVizHome=no&:embed=true"
  width="645" height="545"></iframe>
 
-As we can see, all the points in the Mandelbrot set (all the points with `num_iter == max_iter`) are represented by one color (blue). The other points whose `num_iter` $<$ `max_iter` are not in the set. Depending on the actual value of `num_iter`, we use a different shade of green to color the number of iterations it took for the magnitude of $z$ to exceed $2$. 
-
-The boundaries between the points inside and outside the Mandelbrot set exhibit intriguing fractal patterns. You can hover the cursor near the boundaries (the thin white regions around the blue shape) and see that this pattern is a result of having different `num_iter` values for each pixel point. Below is a more zoomed-in view of this boundary region. Unfortunately, we do not have a clear image since each pixel is represented by a point and we work with a $600 \times 400$ pixel plot. 
+Below is a more zoomed-in view of this boundary region. Each pixel point has a different color depending on the number of iterations it took for $z$ to exceed the threshold of $2$, or the maximum iteration we specified. This is what gives the boundaries mesmerizing fractal patterns. Unfortunately, we do not have a clear image since each pixel is represented by a point and we only have a $600 \times 400$ pixel plot. 
 
 ![alt text](https://github.com/dnnguyen99/dnnguyen99.github.io/blob/gh-pages/assets/img/mandelbrot_zoomed.png?raw=true){:width="600px"}
 
